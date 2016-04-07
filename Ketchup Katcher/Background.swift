@@ -6,30 +6,44 @@
 //  Copyright © 2016 Quantum Apple. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import SpriteKit
 
-class Background: UIViewController {
+class Background: SKSpriteNode
+{
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    let segmentsPresent = 2
+    let tileOne = UIColor.whiteColor()
+    let tileTwo = UIColor.blackColor()
+    
+    init(size:CGSize)
+    {
+        super.init(texture:nil, color:UIColor.redColor(), size: CGSizeMake(size.width*2, size.height))
+        anchorPoint = CGPointMake(0, 0.5)
+        
+        for var i = 0; i < segmentsPresent; i++
+        {
+            var segmentColor: UIColor!
+            if i % 2 == 0
+            {
+                segmentColor = tileOne
+            }
+            else
+            {
+                segmentColor = tileTwo
+            }
+            
+            let segment = SKSpriteNode(color: segmentColor, size: CGSizeMake(self.size.width / CGFloat(segmentsPresent), self.size.height))
+            segment.anchorPoint = CGPointMake(0.0, 0.5)
+            segment.position = CGPointMake(CGFloat(i)*segment.size.width, 0)
+            addChild(segment)
+        }
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    required init?(coder aDecoder: NSCoder)
+    {
+        fatalError("init(coder:) has not been implemented")
     }
-    */
 
 }

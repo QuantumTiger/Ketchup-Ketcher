@@ -487,6 +487,7 @@
 				3F967A681CB5614C00B80CD4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3F967A691CB5614C00B80CD4 /* Build configuration list for PBXNativeTarget "Ketchup KatcherTests" */ = {
 			isa = XCConfigurationList;
@@ -495,6 +496,7 @@
 				3F967A6B1CB5614C00B80CD4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3F967A6C1CB5614C00B80CD4 /* Build configuration list for PBXNativeTarget "Ketchup KatcherUITests" */ = {
 			isa = XCConfigurationList;
@@ -503,6 +505,7 @@
 				3F967A6E1CB5614C00B80CD4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
