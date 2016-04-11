@@ -30,12 +30,12 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
         wallImage.frame = CGRect(x: 230, y: 550, width: 150, height: 50)
         view.addSubview(wallImage)
         
-        let KetchupColorName = "Wall Color"
-        let KetchupColor = UIImage(named: wallColorName)
-        let KetchupImage = UIImageView(image: wallColor!)
+        let ketchupColorName = "Ketchup"
+        let ketchupColor = UIImage(named: ketchupColorName)
+        let ketchupImage = UIImageView(image: ketchupColor!)
         
-        KetchupImage.frame = CGRect(x: 230, y: 550, width: 150, height: 50)
-        view.addSubview(wallImage)
+        ketchupImage.frame = CGRect(x:view.center.x - 20, y: 100, width: 30, height: 75)
+        view.addSubview(ketchupImage)
 
         game()
     }
@@ -48,13 +48,6 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
         burger.clipsToBounds = true
         view.addSubview(burger)
         
-        
-//        ketchup = UIImageView(frame: CGRectMake(view.center.x - 40, view.center.y * 2.0, 80, 80))
-//        ketchup.image = UIImage(named: "Ketchup")
-//        ketchup.layer.cornerRadius = 5
-//        burger.clipsToBounds = true
-//        view.addSubview(ketchup)
-        
         myDynamicAnimator = UIDynamicAnimator(referenceView: view)
         
         let burgerDynamiceBehavior = UIDynamicItemBehavior(items: [burger])
@@ -62,18 +55,6 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
         burgerDynamiceBehavior.resistance = 100.0
         burgerDynamiceBehavior.allowsRotation = false
         myDynamicAnimator.addBehavior(burgerDynamiceBehavior)
-        
-        let wallDynamiceBehavior = UIDynamicItemBehavior(items: [wall])
-        wallDynamiceBehavior.density = 10000.0
-        wallDynamiceBehavior.resistance = 100.0
-        wallDynamiceBehavior.allowsRotation = false
-        myDynamicAnimator.addBehavior(wallDynamiceBehavior)
-        
-//        collisionBehavior = UICollisionBehavior(items: [burger], [wall])
-//        collisionBehavior.translatesReferenceBoundsIntoBoundary = true
-//        collisionBehavior.collisionMode = .Everything
-//        collisionBehavior.collisionDelegate = self
-//        myDynamicAnimator.addBehavior(collisionBehavior)
         
     }
    
