@@ -19,17 +19,11 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
     var collisionBehavior = UICollisionBehavior()
     var myDynamicAnimator = UIDynamicAnimator()
     
+    var wallStoreFunction : [UIImageView] = []
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
-
-        let wallColorName = "Wall Color"
-        let wallColor = UIImage(named: wallColorName)
-        let wallImage = UIImageView(image: wallColor!)
-        
-        wallImage.frame = CGRect(x: 230, y: 100, width: 150, height: 50)
-        view.addSubview(wallImage)
-        
         
         let ketchupColorName = "Ketchup"
         let ketchupColor = UIImage(named: ketchupColorName)
@@ -49,21 +43,29 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
         burger.clipsToBounds = true
         view.addSubview(burger)
         
+        wall = UIImageView(frame: CGRect(x: 230, y: 600, width: 150, height: 50))
+        wall.image = UIImage(named: "Wall Color")
+        wall.clipsToBounds = true
+        view.addSubview(wall)
+    
+        
         myDynamicAnimator = UIDynamicAnimator(referenceView: view)
         
         let burgerDynamiceBehavior = UIDynamicItemBehavior(items: [burger])
-        burgerDynamiceBehavior.density = 10000.0
-        burgerDynamiceBehavior.resistance = 100.0
+        burgerDynamiceBehavior.density = 99999.0
+        burgerDynamiceBehavior.resistance = 9999999999.0
         burgerDynamiceBehavior.allowsRotation = false
         myDynamicAnimator.addBehavior(burgerDynamiceBehavior)
+        wallStoreFunction.append(burger)
         
         let wallDynamiceBehavior = UIDynamicItemBehavior(items: [wall])
-        wallDynamiceBehavior.density = 10000.0
-        wallDynamiceBehavior.resistance = 100.0
+        wallDynamiceBehavior.density = 9999999999.0
+        wallDynamiceBehavior.resistance = 9999999.0
         wallDynamiceBehavior.allowsRotation = false
         myDynamicAnimator.addBehavior(wallDynamiceBehavior)
+        wallStoreFunction.append(wall)
         
-        collisionBehavior = UICollisionBehavior(items: [burger, wall])
+        collisionBehavior = UICollisionBehavior(items: wallStoreFunction)
         collisionBehavior.translatesReferenceBoundsIntoBoundary = true
         collisionBehavior.collisionMode = .Everything
         collisionBehavior.collisionDelegate = self
