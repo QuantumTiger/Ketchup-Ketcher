@@ -27,8 +27,9 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
         let wallColor = UIImage(named: wallColorName)
         let wallImage = UIImageView(image: wallColor!)
         
-        wallImage.frame = CGRect(x: 230, y: 550, width: 150, height: 50)
+        wallImage.frame = CGRect(x: 230, y: 100, width: 150, height: 50)
         view.addSubview(wallImage)
+        
         
         let ketchupColorName = "Ketchup"
         let ketchupColor = UIImage(named: ketchupColorName)
@@ -55,6 +56,18 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
         burgerDynamiceBehavior.resistance = 100.0
         burgerDynamiceBehavior.allowsRotation = false
         myDynamicAnimator.addBehavior(burgerDynamiceBehavior)
+        
+        let wallDynamiceBehavior = UIDynamicItemBehavior(items: [wall])
+        wallDynamiceBehavior.density = 10000.0
+        wallDynamiceBehavior.resistance = 100.0
+        wallDynamiceBehavior.allowsRotation = false
+        myDynamicAnimator.addBehavior(wallDynamiceBehavior)
+        
+        collisionBehavior = UICollisionBehavior(items: [burger, wall])
+        collisionBehavior.translatesReferenceBoundsIntoBoundary = true
+        collisionBehavior.collisionMode = .Everything
+        collisionBehavior.collisionDelegate = self
+        myDynamicAnimator.addBehavior(collisionBehavior)
         
     }
    
