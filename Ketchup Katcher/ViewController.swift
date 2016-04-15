@@ -24,46 +24,63 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
-        let ketchupColorName = "Ketchup"
-        let ketchupColor = UIImage(named: ketchupColorName)
-        let ketchupImage = UIImageView(image: ketchupColor!)
-        
-        ketchupImage.frame = CGRect(x:view.center.x - 20, y: 100, width: 30, height: 75)
-        view.addSubview(ketchupImage)
 
         game()
     }
 
     func game()
     {
-        burger = UIImageView(frame: CGRectMake(view.center.x - 40, view.center.y * 1.75, 80, 80))
+        createRandom()
+    
+        ketchup = UIImageView(frame: CGRect(x:view.center.x - 20, y: 100, width: 30, height: 75))
+        ketchup.image = UIImage(named: "Ketchup")
+        ketchup.layer.cornerRadius = 5
+        ketchup.clipsToBounds = true
+        view.addSubview(ketchup)
+        
+        
+        burger = UIImageView(frame: CGRectMake(view.center.x - 40, view.center.y * 1.75, 75, 75))
         burger.image = UIImage(named: "Burger")
         burger.layer.cornerRadius = 5
         burger.clipsToBounds = true
         view.addSubview(burger)
         
-        wall = UIImageView(frame: CGRect(x: 230, y: 600, width: 150, height: 50))
-        wall.image = UIImage(named: "Wall Color")
-        wall.clipsToBounds = true
-        view.addSubview(wall)
+//        wall = UIImageView(frame: CGRect(x: 230, y: 100, width: 130, height: 50))
+//        wall.image = UIImage(named: "Wall Color")
+//        wall.clipsToBounds = false
+//        view.addSubview(wall)
     
         
         myDynamicAnimator = UIDynamicAnimator(referenceView: view)
         
+//        let ketchupDynamiceBehavior = UIDynamicItemBehavior(items: [ketchup])
+//        ketchupDynamiceBehavior.density = 0.0
+//        ketchupDynamiceBehavior.resistance = 0.0
+//        ketchupDynamiceBehavior.friction = 0.0
+//        ketchupDynamiceBehavior.elasticity = 1.0
+//        myDynamicAnimator.addBehavior(ketchupDynamiceBehavior)
+        wallStoreFunction.append(ketchup)
+        
         let burgerDynamiceBehavior = UIDynamicItemBehavior(items: [burger])
-        burgerDynamiceBehavior.density = 99999.0
-        burgerDynamiceBehavior.resistance = 9999999999.0
+        burgerDynamiceBehavior.density = 999999999.0
+        burgerDynamiceBehavior.resistance = 999999.0
         burgerDynamiceBehavior.allowsRotation = false
         myDynamicAnimator.addBehavior(burgerDynamiceBehavior)
         wallStoreFunction.append(burger)
         
-        let wallDynamiceBehavior = UIDynamicItemBehavior(items: [wall])
-        wallDynamiceBehavior.density = 9999999999.0
-        wallDynamiceBehavior.resistance = 9999999.0
-        wallDynamiceBehavior.allowsRotation = false
-        myDynamicAnimator.addBehavior(wallDynamiceBehavior)
-        wallStoreFunction.append(wall)
+//        let wallDynamiceBehavior = UIDynamicItemBehavior(items: [wall])
+//        //wallDynamiceBehavior.density = 0.0
+//        wallDynamiceBehavior.resistance = 0.0
+//        wallDynamiceBehavior.friction = 0.0
+//        wallDynamiceBehavior.elasticity = 1.0
+//        wallDynamiceBehavior.allowsRotation = false
+//        myDynamicAnimator.addBehavior(wallDynamiceBehavior)
+//        wallStoreFunction.append(wall)
+        
+//        let pushBehavior = UIPushBehavior(items: [wall], mode: .Instantaneous)
+//        pushBehavior.angle = 90.0
+//        pushBehavior.magnitude = 5.0
+//        myDynamicAnimator.addBehavior(pushBehavior)
         
         collisionBehavior = UICollisionBehavior(items: wallStoreFunction)
         collisionBehavior.translatesReferenceBoundsIntoBoundary = true
@@ -75,9 +92,35 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
    
     @IBAction func dragPad(sender: UIPanGestureRecognizer)
     {
-        let panGesture = sender.locationInView(view).x
-        burger.center = CGPointMake(panGesture, burger.center.y)
+        let panX = sender.locationInView(view).x
+        let panY = sender.locationInView(view).y
+        burger.center = CGPointMake(panX, panY)
         myDynamicAnimator.updateItemUsingCurrentState(burger)
+    }
+    
+    func createRandom()
+    {
+        
+                wall = UIImageView(frame: CGRect(x: Int(arc4random_uniform(230)), y: Int(arc4random_uniform(100)), width: 130, height: 50))
+                wall.image = UIImage(named: "Wall Color")
+                wall.clipsToBounds = false
+                view.addSubview(wall)
+
+                let wallDynamiceBehavior = UIDynamicItemBehavior(items: [wall])
+                //wallDynamiceBehavior.density = 0.0
+                wallDynamiceBehavior.resistance = 0.0
+                wallDynamiceBehavior.friction = 0.0
+                wallDynamiceBehavior.elasticity = 1.0
+                wallDynamiceBehavior.allowsRotation = false
+                myDynamicAnimator.addBehavior(wallDynamiceBehavior)
+                wallStoreFunction.append(wall)
+        
+                let pushBehavior = UIPushBehavior(items: [wall], mode: .Instantaneous)
+                pushBehavior.angle = 90.0
+                pushBehavior.magnitude = 5.0
+                myDynamicAnimator.addBehavior(pushBehavior)
+
+
     }
 
     func makeWalls(wallsForLevel : Int, YValue : CGFloat, XValue : CGFloat)
