@@ -28,20 +28,9 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
-        let timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(ViewController.countdown), userInfo: nil, repeats: true)
-        print("Time \(wallExpired)")
-        
-        if wallCounter == 0
-        {
-            print("Time \(timer)")
-            print("Removed")
-//            wall.removeFromSuperview()
-//            collisionBehavior.removeItem(wall)
-//            myDynamicAnimator.updateItemUsingCurrentState(wall)
-        }
         game()
     }
+    
     func countdown()
     {
         wallExpired -= 1
@@ -51,6 +40,18 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
         createRandom()
         createRandom()
         createRandom()
+        
+        let timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(ViewController.countdown), userInfo: nil, repeats: true)
+        print("Time \(wallExpired)")
+        
+        if wallCounter == 0
+        {
+            print("Time \(timer)")
+            print("Removed")
+            //            wall.removeFromSuperview()
+            //            collisionBehavior.removeItem(wall)
+            //            myDynamicAnimator.updateItemUsingCurrentState(wall)
+        }
         
         ketchup = UIImageView(frame: CGRect(x:view.center.x - 20, y: 100, width: 30, height: 75))
         ketchup.image = UIImage(named: "Ketchup")
