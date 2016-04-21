@@ -23,7 +23,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
     var wallStoreFunction : [UIImageView] = []
     var itemStore : [UIImageView] = []
     
-    var wallExpired = 10
+    var wallExpired = 3
     var wallCounter = 0
     
     var gravity : UIGravityBehavior!
@@ -36,43 +36,53 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
-//        animator = UIDynamicAnimator(referenceView: view)
-//        gravity = UIGravityBehavior(items: [wall])
-//        animator.addBehavior(gravity)
     }
 
     func countdown()
     {
         wallExpired -= 1
-        print("wallExpired Value : \(wallExpired)")
+        print("Time Elapsed : \(wallExpired)")
+        
+        if wallExpired / 2 == 1
+        {
+            print("Wall Removed")
+            wall.removeFromSuperview()
+            collisionBehavior.removeItem(wall)
+            myDynamicAnimator.updateItemUsingCurrentState(wall)
+            wallCounter -= 1
+        }
+        else if wallExpired < 0
+        {
+            wallExpired = 3
+            print("Reset")
+        }
+        else if wallCounter == 0
+        {
+            createRandom()
+            myDynamicAnimator.updateItemUsingCurrentState(wall)
+            view.addSubview(wall)
+        }
+
     }
     
     @IBAction func startGameGo(sender: AnyObject)
     {
         startButton.hidden = true
         timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(ViewController.countdown), userInfo: nil, repeats: true)
-        if wallExpired == 0
-        {
-            timer!.invalidate()
-            print("If Statement Called")
-            
-            wall.removeFromSuperview()
-            collisionBehavior.removeItem(wall)
-            myDynamicAnimator.updateItemUsingCurrentState(wall)
-            wallCounter -= 1
-        }
+        NSRunLoop.currentRunLoop().addTimer(timer!, forMode: NSRunLoopCommonModes)
+        
         game()
     }
     
     func game()
     {
         createRandom()
-        createRandom()
-        createRandom()
-        
 
-        ketchup = UIImageView(frame: CGRect(x:view.center.x - 20, y: 100, width: 30, height: 75))
+//        animator = UIDynamicAnimator(referenceView: view)
+//        gravity = UIGravityBehavior(items: [wall])
+//        animator.addBehavior(gravity)
+
+        ketchup = UIImageView(frame: CGRect(x:view.center.x - 20, y: 75, width: 30, height: 75))
         ketchup.image = UIImage(named: "Ketchup")
         ketchup.layer.cornerRadius = 5
         ketchup.clipsToBounds = true
@@ -138,7 +148,6 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
     
     func collisionBehavior(behavior: UICollisionBehavior, beganContactForItem item1: UIDynamicItem, withItem item2: UIDynamicItem, atPoint p: CGPoint)
     {
-       
         for wall in wallStoreFunction
         {
             if item1.isEqual(burger) && item2.isEqual(wall) || item1.isEqual(wall) && item2.isEqual(burger)
@@ -149,12 +158,6 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
                 myDynamicAnimator.updateItemUsingCurrentState(wall)
                 wallCounter -= 1
                 print("Walls \(wallCounter)")
-            }
-            else if wallCounter == 0
-            {
-                createRandom()
-                myDynamicAnimator.updateItemUsingCurrentState(wall)
-                view.addSubview(wall)
             }
         }
     }
