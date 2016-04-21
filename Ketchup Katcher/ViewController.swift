@@ -21,7 +21,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
     var myDynamicAnimator = UIDynamicAnimator()
     
     var wallStoreFunction : [UIImageView] = []
-    var randomStore : [UIImageView] = []
+    var randomWallStore : [UIImageView] = []
     
     var wallExpired = 3
     var wallCounter = 0
@@ -48,6 +48,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
             print("Wall Removed")
             wall.removeFromSuperview()
             collisionBehavior.removeItem(wall)
+            randomWallStore.removeAll()
             wallStoreFunction.removeAll()
             myDynamicAnimator.updateItemUsingCurrentState(wall)
             wallCounter -= 1
@@ -112,6 +113,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
         burgerDynamiceBehavior.allowsRotation = false
         myDynamicAnimator.addBehavior(burgerDynamiceBehavior)
         wallStoreFunction.append(burger)
+        randomWallStore.append(burger)
         
         collisionBehavior = UICollisionBehavior(items: wallStoreFunction)
         collisionBehavior.translatesReferenceBoundsIntoBoundary = true
@@ -130,28 +132,29 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
     
     func createRandom()
     {
-        wall = UIImageView(frame: CGRect(x: Int(arc4random_uniform(200) + 50), y: Int(arc4random_uniform(450) + 100), width: 80, height: 30))
-        wall.image = UIImage(named: "Wall Color")
-        wall.clipsToBounds = true
-        view.addSubview(wall)
-        wallStoreFunction.append(wall)
-        randomStore.append(wall)
+
+            wall = UIImageView(frame: CGRect(x: Int(arc4random_uniform(200) + 50), y: Int(arc4random_uniform(450) + 100), width: 80, height: 30))
+            wall.image = UIImage(named: "Wall Color")
+            wall.clipsToBounds = true
+            view.addSubview(wall)
+            wallStoreFunction.append(wall)
+            randomWallStore.append(wall)
         
-        let wallDynamiceBehavior = UIDynamicItemBehavior(items: [wall])
-//        wallDynamiceBehavior.density = 99999999.0
-//        wallDynamiceBehavior.resistance = 99999999999999.0
-//        wallDynamiceBehavior.elasticity = 1.0
-        wallDynamiceBehavior.allowsRotation = false
-        myDynamicAnimator.addBehavior(wallDynamiceBehavior)
-        wallCounter += 1
-        print("Walls \(wallCounter)")
+            let wallDynamicBehavior = UIDynamicItemBehavior(items: wallStoreFunction)
+            //        wallDynamicBehavior.density = 99999999.0
+            //        wallDynamicBehavior.resistance = 99999999999999.0
+            //        wallDynamicBehavior.elasticity = 1.0
+            wallDynamicBehavior.allowsRotation = false
+            myDynamicAnimator.addBehavior(wallDynamicBehavior)
+            wallCounter += 1
+            print("Walls \(wallCounter)")
     }
     
     func collisionBehavior(behavior: UICollisionBehavior, beganContactForItem item1: UIDynamicItem, withItem item2: UIDynamicItem, atPoint p: CGPoint)
     {
         for wall in wallStoreFunction
         {
-            if item1.isEqual(burger) && item2.isEqual(wall) || item1.isEqual(wall) && item2.isEqual(burger)
+            if item1.isEqual(burger) && item2.isEqual(wallStoreFunction) || item1.isEqual(wallStoreFunction) && item2.isEqual(burger)
             {
                 print("Game Over")
                 wall.removeFromSuperview()
