@@ -21,7 +21,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
     var myDynamicAnimator = UIDynamicAnimator()
     
     var wallStoreFunction : [UIImageView] = []
-    var itemStore : [UIImageView] = []
+    var randomStore : [UIImageView] = []
     
     var wallExpired = 3
     var wallCounter = 0
@@ -48,6 +48,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
             print("Wall Removed")
             wall.removeFromSuperview()
             collisionBehavior.removeItem(wall)
+            wallStoreFunction.removeAll()
             myDynamicAnimator.updateItemUsingCurrentState(wall)
             wallCounter -= 1
         }
@@ -70,7 +71,6 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
         startButton.hidden = true
         timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(ViewController.countdown), userInfo: nil, repeats: true)
         NSRunLoop.currentRunLoop().addTimer(timer!, forMode: NSRunLoopCommonModes)
-        
         game()
     }
     
@@ -135,11 +135,12 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
         wall.clipsToBounds = true
         view.addSubview(wall)
         wallStoreFunction.append(wall)
+        randomStore.append(wall)
         
         let wallDynamiceBehavior = UIDynamicItemBehavior(items: [wall])
-        wallDynamiceBehavior.density = 99999999.0
-        wallDynamiceBehavior.resistance = 99999999999999.0
-        wallDynamiceBehavior.elasticity = 1.0
+//        wallDynamiceBehavior.density = 99999999.0
+//        wallDynamiceBehavior.resistance = 99999999999999.0
+//        wallDynamiceBehavior.elasticity = 1.0
         wallDynamiceBehavior.allowsRotation = false
         myDynamicAnimator.addBehavior(wallDynamiceBehavior)
         wallCounter += 1
