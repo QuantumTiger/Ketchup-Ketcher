@@ -10,11 +10,13 @@
 import UIKit
 
 
-class ViewController: UIViewController, UICollisionBehaviorDelegate
+class ViewController: UIViewController, UICollisionBehaviorDelegate, UIWebViewDelegate
 {
 
     var burger = UIImageView()
     var wall = UIImageView()
+    var newObstacleLeft = UIImageView()
+    var newObstacleRight = UIImageView()
     var ketchup = UIImageView()
     
     var collisionBehavior = UICollisionBehavior()
@@ -22,6 +24,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
     
     var wallStoreFunction : [UIImageView] = []
     var randomWallStore : [UIImageView] = []
+    var wallBarrierStore : [UIImageView] = []
     
     var wallExpired = 3
     var wallCounter = 0
@@ -33,6 +36,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
     
     @IBOutlet weak var startButton: UIButton!
     
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -40,33 +44,33 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
 
     func countdown()
     {
-        wallExpired -= 1
         print("Time Elapsed : \(wallExpired)")
         
         if wallExpired / 2 == 1
         {
             print("Wall Removed")
-            wall.removeFromSuperview()
-            collisionBehavior.removeItem(wall)
-            randomWallStore.removeAll()
-            wallStoreFunction.removeAll()
-            myDynamicAnimator.updateItemUsingCurrentState(wall)
-            wallCounter -= 1
+            for newWall in randomWallStore
+            {
+                newWall.frame = CGRectMake(CGFloat(arc4random_uniform(200) + 50), CGFloat(arc4random_uniform(450) + 100), 25, 25)
+                view.addSubview(newWall)
+                myDynamicAnimator.updateItemUsingCurrentState(newWall)
+                wallCounter -= 1
+            }
         }
+            
         else if wallExpired < 0
         {
             wallExpired = 3
             print("Reset")
         }
-        else if wallCounter == 0
+        else if wallCounter < 0
         {
-            createRandom()
+            createRandom(5)
             myDynamicAnimator.updateItemUsingCurrentState(wall)
             view.addSubview(wall)
         }
 
     }
-    
     @IBAction func startGameGo(sender: AnyObject)
     {
         startButton.hidden = true
@@ -77,22 +81,30 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
     
     func game()
     {
-        createRandom()
-
-//        animator = UIDynamicAnimator(referenceView: view)
-//        gravity = UIGravityBehavior(items: [wall])
-//        animator.addBehavior(gravity)
-
-        ketchup = UIImageView(frame: CGRect(x:view.center.x - 20, y: 75, width: 30, height: 75))
+        let filePath = NSBundle.mainBundle().pathForResource("giphy-1", ofType: "gif")
+        let gif = NSData(contentsOfFile: filePath!)
+        
+        let webViewBG = UIWebView(frame: self.view.frame)
+        webViewBG.loadData(gif!, MIMEType: "image/gif", textEncodingName: String(), baseURL: NSURL())
+        webViewBG.userInteractionEnabled = false
+        self.view.addSubview(webViewBG)
+        
+        let filter = UIView()
+        filter.frame = self.view.frame
+        filter.backgroundColor = UIColor.blackColor()
+        filter.alpha = 0.05
+        self.view.addSubview(filter)
+        
+        ketchup = UIImageView(frame: CGRect(x:view.center.x - 20, y: 30, width: 30, height: 75))
         ketchup.image = UIImage(named: "Ketchup")
         ketchup.layer.cornerRadius = 5
         ketchup.clipsToBounds = true
         view.addSubview(ketchup)
         
-        burger = UIImageView(frame: CGRectMake(view.center.x - 40, view.center.y * 1.75, 75, 75))
-//        burger.backgroundColor = UIColor.blackColor()
+        burger = UIImageView(frame: CGRectMake(view.center.x - 40, view.center.y * 1.75, 55, 45))
+//        burger.backgroundColor = UIColor.whiteColor()
         burger.image = UIImage(named: "Burger")
-        burger.layer.cornerRadius = 40.0
+        burger.layer.cornerRadius = 10.0
         burger.clipsToBounds = true
         view.addSubview(burger)
         
@@ -104,7 +116,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
 //        ketchupDynamiceBehavior.friction = 0.0
 //        ketchupDynamiceBehavior.elasticity = 1.0
 //        myDynamicAnimator.addBehavior(ketchupDynamiceBehavior)
-        
+//        
 //        wallStoreFunction.append(ketchup)
         
         let burgerDynamiceBehavior = UIDynamicItemBehavior(items: [burger])
@@ -113,7 +125,21 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
         burgerDynamiceBehavior.allowsRotation = false
         myDynamicAnimator.addBehavior(burgerDynamiceBehavior)
         wallStoreFunction.append(burger)
-        randomWallStore.append(burger)
+
+        createRandom(5)
+        createBarriers(10, NumberOfRightBarriers: 10)
+        
+        let wallDynamicBehavior = UIDynamicItemBehavior(items: randomWallStore)
+        wallDynamicBehavior.allowsRotation = false
+        wallDynamicBehavior.anchored = true
+        myDynamicAnimator.addBehavior(wallDynamicBehavior)
+        wallCounter += 1
+        
+        let obstacleDynamicBehavior = UIDynamicItemBehavior(items: wallBarrierStore)
+        obstacleDynamicBehavior.allowsRotation = false
+        obstacleDynamicBehavior.anchored = true
+        myDynamicAnimator.addBehavior(obstacleDynamicBehavior)
+        wallCounter += 1
         
         collisionBehavior = UICollisionBehavior(items: wallStoreFunction)
         collisionBehavior.translatesReferenceBoundsIntoBoundary = true
@@ -130,38 +156,61 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
         myDynamicAnimator.updateItemUsingCurrentState(burger)
     }
     
-    func createRandom()
+    func createRandom(NumberOfWalls : Int)
     {
-
-            wall = UIImageView(frame: CGRect(x: Int(arc4random_uniform(200) + 50), y: Int(arc4random_uniform(450) + 100), width: 80, height: 30))
-            wall.image = UIImage(named: "Wall Color")
-            wall.clipsToBounds = true
-            view.addSubview(wall)
-            wallStoreFunction.append(wall)
-            randomWallStore.append(wall)
-        
-            let wallDynamicBehavior = UIDynamicItemBehavior(items: wallStoreFunction)
-            //        wallDynamicBehavior.density = 99999999.0
-            //        wallDynamicBehavior.resistance = 99999999999999.0
-            //        wallDynamicBehavior.elasticity = 1.0
-            wallDynamicBehavior.allowsRotation = false
-            myDynamicAnimator.addBehavior(wallDynamicBehavior)
+        for walls in 1...NumberOfWalls
+        {
+            let newWall = UIImageView(frame: CGRect(x: Int(arc4random_uniform(50) + 50), y: Int(arc4random_uniform(450) + 100), width: 25, height: 25))
+            newWall.frame = CGRectMake(CGFloat(arc4random_uniform(200) + 50), CGFloat(arc4random_uniform(450) + 100), 25, 25)
+            newWall.image = UIImage(named: "Wall Color")
+            view.addSubview(newWall)
+            randomWallStore.append(newWall)
+            wallStoreFunction.append(newWall)
             wallCounter += 1
-            print("Walls \(wallCounter)")
+        }
+    }
+    func createBarriers(NumberOfLeftBarriers : Int, NumberOfRightBarriers : Int)
+    {
+        let leftX = 0
+        let rightX = 273
+        var leftDistanceBetween = 550
+        var rightDistanceBetween = 550
+        
+        var obstacleY = (Int(view.frame.height - 10) - (NumberOfLeftBarriers - 1) * 3) / NumberOfLeftBarriers
+        
+        for leftObstacle in 1...NumberOfLeftBarriers
+        {
+            newObstacleLeft = UIImageView(frame: CGRect(x: leftX, y: leftDistanceBetween, width: Int(arc4random_uniform(100) + 35), height: 40))
+            newObstacleLeft.image = UIImage(named: "Wall Color")
+            view.addSubview(newObstacleLeft)
+            wallStoreFunction.append(newObstacleLeft)
+            wallBarrierStore.append(newObstacleLeft)
+            leftDistanceBetween -= 50
+        }
+        
+        for rightObstacle in 1...NumberOfRightBarriers
+        {
+            newObstacleRight = UIImageView(frame: CGRect(x: rightX, y: rightDistanceBetween, width: Int(arc4random_uniform(35) + 100), height: 40))
+            newObstacleRight.image = UIImage(named: "Wall Color")
+            view.addSubview(newObstacleRight)
+            collisionBehavior.addBoundaryWithIdentifier("newObstacleRight", forPath: UIBezierPath(rect: newObstacleRight.frame))
+            wallStoreFunction.append(newObstacleRight)
+            wallBarrierStore.append(newObstacleRight)
+            rightDistanceBetween -= 50
+
+        }
     }
     
     func collisionBehavior(behavior: UICollisionBehavior, beganContactForItem item1: UIDynamicItem, withItem item2: UIDynamicItem, atPoint p: CGPoint)
     {
         for wall in wallStoreFunction
         {
-            if item1.isEqual(burger) && item2.isEqual(wallStoreFunction) || item1.isEqual(wallStoreFunction) && item2.isEqual(burger)
+            if item1.isEqual(burger) && item2.isEqual(wall) || item1.isEqual(wall) && item2.isEqual(burger)
             {
                 print("Game Over")
-                wall.removeFromSuperview()
-                collisionBehavior.removeItem(wall)
-                myDynamicAnimator.updateItemUsingCurrentState(wall)
-                wallCounter -= 1
-                print("Walls \(wallCounter)")
+//                burger.removeFromSuperview()
+//                collisionBehavior.removeItem(burger)
+//                myDynamicAnimator.updateItemUsingCurrentState(burger)
             }
         }
     }

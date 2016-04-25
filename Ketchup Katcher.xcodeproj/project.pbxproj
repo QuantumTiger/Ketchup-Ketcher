@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F67E2EE1CCD295300D8FB01 /* giphy-1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3F67E2ED1CCD295300D8FB01 /* giphy-1.gif */; };
+		3F67E2F01CCD2E4600D8FB01 /* Shooting_Star.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3F67E2EF1CCD2E4600D8FB01 /* Shooting_Star.gif */; };
+		3F89BBDA1CCD18D40003B317 /* checkerboard.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3F89BBD91CCD18D40003B317 /* checkerboard.gif */; };
 		3F967A421CB5614C00B80CD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F967A411CB5614C00B80CD4 /* AppDelegate.swift */; };
 		3F967A441CB5614C00B80CD4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F967A431CB5614C00B80CD4 /* ViewController.swift */; };
 		3F967A471CB5614C00B80CD4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F967A451CB5614C00B80CD4 /* Main.storyboard */; };
@@ -34,6 +37,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F67E2ED1CCD295300D8FB01 /* giphy-1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "giphy-1.gif"; path = "../../../giphy-1.gif"; sourceTree = "<group>"; };
+		3F67E2EF1CCD2E4600D8FB01 /* Shooting_Star.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = Shooting_Star.gif; path = ../../../Shooting_Star.gif; sourceTree = "<group>"; };
+		3F89BBD91CCD18D40003B317 /* checkerboard.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = checkerboard.gif; path = ../../../checkerboard.gif; sourceTree = "<group>"; };
 		3F967A3E1CB5614C00B80CD4 /* Ketchup Katcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ketchup Katcher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F967A411CB5614C00B80CD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F967A431CB5614C00B80CD4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +107,9 @@
 				3F967A431CB5614C00B80CD4 /* ViewController.swift */,
 				3F967A451CB5614C00B80CD4 /* Main.storyboard */,
 				3F967A481CB5614C00B80CD4 /* Assets.xcassets */,
+				3F89BBD91CCD18D40003B317 /* checkerboard.gif */,
+				3F67E2ED1CCD295300D8FB01 /* giphy-1.gif */,
+				3F67E2EF1CCD2E4600D8FB01 /* Shooting_Star.gif */,
 				3F967A4A1CB5614C00B80CD4 /* LaunchScreen.storyboard */,
 				3F967A4D1CB5614C00B80CD4 /* Info.plist */,
 			);
@@ -233,8 +242,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F967A4C1CB5614C00B80CD4 /* LaunchScreen.storyboard in Resources */,
+				3F67E2EE1CCD295300D8FB01 /* giphy-1.gif in Resources */,
+				3F89BBDA1CCD18D40003B317 /* checkerboard.gif in Resources */,
 				3F967A491CB5614C00B80CD4 /* Assets.xcassets in Resources */,
 				3F967A471CB5614C00B80CD4 /* Main.storyboard in Resources */,
+				3F67E2F01CCD2E4600D8FB01 /* Shooting_Star.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
