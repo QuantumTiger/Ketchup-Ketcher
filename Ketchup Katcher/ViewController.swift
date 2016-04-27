@@ -29,7 +29,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate, UIWebViewDe
     var leftWallBarrierStore : [UIImageView] = []
     var rightWallBarrierStore : [UIImageView] = []
     
-    var wallExpired = 3
+    var wallExpired = 2
     var wallCounter = 0
     
     var dataFound = DataController()
@@ -72,7 +72,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate, UIWebViewDe
             
         else if wallExpired < 0
         {
-            wallExpired = 3
+            wallExpired = 2
             print("Reset")
         }
     }
@@ -176,8 +176,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate, UIWebViewDe
     func createBarriers(NumberOfLeftBarriers : Int, NumberOfRightBarriers : Int)
     {
         let leftX = 0
-//        let rightX = newObstacleRight.frame.origin.x
-        let rightX = 300 //273
+        let rightX = Int(view.frame.width)
         var leftDistanceBetween = 550
         var rightDistanceBetween = 550
         
@@ -196,7 +195,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate, UIWebViewDe
         
         for rightObstacle in 1...NumberOfRightBarriers
         {
-            newWallRight = UIImageView(frame: CGRect(x: rightX, y: rightDistanceBetween, width: Int(arc4random_uniform(100) + 35), height: 40))
+            newWallRight = UIImageView(frame: CGRect(x: rightX, y: rightDistanceBetween, width: -Int(arc4random_uniform(100) + 35), height: 40))
 //            newObstacleRight.transform = CGAffineTransformMakeScale(-1, 1)
             newWallRight.image = UIImage(named: "Wall Color")
             newWallRight.clipsToBounds = true
