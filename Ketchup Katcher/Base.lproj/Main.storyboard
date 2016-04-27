@@ -27,6 +27,22 @@
                                     <action selector="startGameGo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ffp-UK-i1M"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CaR-nE-dae">
+                                <rect key="frame" x="152" y="629" width="70" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Modes">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="jl5-8W-jye" kind="presentation" id="Dlj-fH-bqb"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Classic Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D14-13-jaS">
+                                <rect key="frame" x="17" y="20" width="110" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -36,6 +52,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="modeLabel" destination="D14-13-jaS" id="xch-Rr-8ZP"/>
                         <outlet property="startButton" destination="V59-TN-akT" id="H80-74-dut"/>
                     </connections>
                 </viewController>
@@ -46,7 +63,108 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="417.5" y="289.5"/>
+            <point key="canvasLocation" x="423.5" y="495.5"/>
+        </scene>
+        <!--Display Game Modes-->
+        <scene sceneID="6MX-Ep-dKY">
+            <objects>
+                <viewController id="jl5-8W-jye" customClass="DisplayGameModes" customModule="Ketchup_Katcher" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vnX-2p-ImE"/>
+                        <viewControllerLayoutGuide type="bottom" id="DQB-hH-AjW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YGW-vN-7sA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LHI-ka-y7r">
+                                <rect key="frame" x="0.0" y="79" width="375" height="87"/>
+                                <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="Classic">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="classicModeButton:" destination="jl5-8W-jye" eventType="touchUpInside" id="tVz-Ju-viN"/>
+                                    <segue destination="BYZ-38-t0r" kind="showDetail" identifier="ClassicMode" id="7pG-QG-wYq"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9my-ji-0bH">
+                                <rect key="frame" x="0.0" y="192" width="375" height="87"/>
+                                <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="Memory">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="memoryModeButton:" destination="jl5-8W-jye" eventType="touchUpInside" id="UUd-TW-WpD"/>
+                                    <segue destination="BYZ-38-t0r" kind="showDetail" id="62m-CU-Q8Y"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rDA-Jb-E84">
+                                <rect key="frame" x="290" y="28" width="65" height="30"/>
+                                <state key="normal" title="Settings">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="0pD-Jd-iFp" kind="presentation" id="RhX-Qo-b3P"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dHy-fo-eP7">
+                                <rect key="frame" x="20" y="28" width="70" height="30"/>
+                                <state key="normal" title="Return">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="returnToHome:" destination="jl5-8W-jye" eventType="touchUpInside" id="DTQ-lW-aNX"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="classicButton" destination="LHI-ka-y7r" id="mxx-4d-rpx"/>
+                        <outlet property="memoryButton" destination="9my-ji-0bH" id="SR0-Ds-e3U"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O3k-Ux-8KZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-237.5" y="795.5"/>
+        </scene>
+        <!--Settings Controller-->
+        <scene sceneID="U4l-2X-piQ">
+            <objects>
+                <viewController id="0pD-Jd-iFp" customClass="SettingsController" customModule="Ketchup_Katcher" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8Ag-fH-bAl"/>
+                        <viewControllerLayoutGuide type="bottom" id="gMK-mw-Mt5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Qd2-MY-Obc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kWu-V9-4xI">
+                                <rect key="frame" x="20" y="28" width="70" height="30"/>
+                                <state key="normal" title="Return">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="returnToHome:" destination="jl5-8W-jye" eventType="touchUpInside" id="Mnl-do-e6v"/>
+                                    <action selector="returnToModes:" destination="0pD-Jd-iFp" eventType="touchUpInside" id="tFm-VQ-Kdd"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JZV-ZJ-8aq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-237.5" y="1630.5"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="7pG-QG-wYq"/>
+    </inferredMetricsTieBreakers>
 </document>
