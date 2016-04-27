@@ -1,5 +1,5 @@
 //
-//  DataController.swift
+//  Memory.swift
 //  Ketchup Katcher
 //
 //  Created by WGonzalez on 4/27/16.
@@ -8,9 +8,13 @@
 
 import UIKit
 
-class DataController: NSObject
+class Memory: UIViewController
 {
-    var modeStored = ""
-    var modeCheck = 0
+
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+    }
+
     
 }

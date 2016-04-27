@@ -10,9 +10,6 @@ import UIKit
 
 class DisplayGameModes: UIViewController
 {
-    var classicSelected = true
-    var memorySelected = false
-    
     var data = DataController()
     
     @IBOutlet weak var classicButton: UIButton!
@@ -29,32 +26,31 @@ class DisplayGameModes: UIViewController
     {
         if (segue.identifier == "ClassicMode")
         {
-            let classicMode = segue.destinationViewController as! ViewController;
+            let classicMode = segue.destinationViewController as! HomeStart;
             classicMode.dataFound = data
         }
-        if (segue.identifier == "ClassicMode")
+        else if (segue.identifier == "MemoryMode")
         {
-            let classicMode = segue.destinationViewController as! ViewController;
-            classicMode.dataFound = data
+            let memoryMode = segue.destinationViewController as! HomeStart;
+            memoryMode.dataFound = data
         }
-
     }
     
     @IBAction func classicModeButton(sender: AnyObject)
     {
-        classicSelected = true
-        memorySelected = false
         memoryButton.highlighted = false
         classicButton.backgroundColor = UIColor(red: 94, green: 94, blue: 94, alpha: 0.05)
         memoryButton.backgroundColor = UIColor(red: 94, green: 94, blue: 94, alpha: 0.15)
+        data.modeStored = "Classic"
+        data.modeCheck = 0
     }
     
     @IBAction func memoryModeButton(sender: AnyObject)
     {
-        classicSelected = false
-        memorySelected = true
         memoryButton.backgroundColor = UIColor(red: 94, green: 94, blue: 94, alpha: 0.05)
         classicButton.backgroundColor = UIColor(red: 94, green: 94, blue: 94, alpha: 0.15)
+        data.modeStored = "Memory"
+        data.modeCheck = 1
     }
     
     @IBAction func returnToHome(sender: AnyObject)

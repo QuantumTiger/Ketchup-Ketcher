@@ -29,10 +29,9 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate, UIWebViewDe
     var leftWallBarrierStore : [UIImageView] = []
     var rightWallBarrierStore : [UIImageView] = []
     
-    var wallExpired = 2
+    var wallExpired = 3
     var wallCounter = 0
-    
-    var dataFound = DataController()
+
     
     var gravity : UIGravityBehavior!
     var animator : UIDynamicAnimator!
@@ -46,7 +45,6 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate, UIWebViewDe
     override func viewDidLoad()
     {
         super.viewDidLoad()
-//        modeLabel.text = "\()"
     }
 
     func countdown()
@@ -66,13 +64,21 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate, UIWebViewDe
             }
             for obstacle in leftWallBarrierStore
             {
-                obstacle.frame = CGRect(x: 0, y: 550, width: Int(arc4random_uniform(25) + 100), height: 40)
+                let leftX = 0
+                
+                obstacle.frame = CGRect(x: leftX, y: 550, width: Int(arc4random_uniform(35) + 100), height: 40)
+            }
+            for obstacle in rightWallBarrierStore
+            {
+                let rightX = Int(view.frame.width)
+                
+                obstacle.frame = CGRect(x: rightX, y: 550, width: -Int(arc4random_uniform(35) + 100), height: 40)
             }
         }
             
         else if wallExpired < 0
         {
-            wallExpired = 2
+            wallExpired = 3
             print("Reset")
         }
     }
@@ -205,6 +211,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate, UIWebViewDe
             rightDistanceBetween -= 50
         }
     }
+    
     func collisionBehavior(behavior: UICollisionBehavior, beganContactForItem item1: UIDynamicItem, withItem item2: UIDynamicItem, atPoint p: CGPoint)
     {
         for leftWall in leftWallBarrierStore
@@ -239,4 +246,11 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate, UIWebViewDe
             print("Winner")
         }
     }
+    
+    @IBAction func returnBackToHome(sender: AnyObject)
+    {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    
 }

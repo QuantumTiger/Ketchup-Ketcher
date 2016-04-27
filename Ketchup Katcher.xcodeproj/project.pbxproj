@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F259B881CD162AE00C6D3B7 /* Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F259B871CD162AE00C6D3B7 /* Memory.swift */; };
 		3F64EBC61CD039980072079B /* HomeStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F64EBC51CD039980072079B /* HomeStart.swift */; };
 		3F67E2EE1CCD295300D8FB01 /* giphy-1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3F67E2ED1CCD295300D8FB01 /* giphy-1.gif */; };
 		3F67E2F01CCD2E4600D8FB01 /* Shooting_Star.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3F67E2EF1CCD2E4600D8FB01 /* Shooting_Star.gif */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F259B871CD162AE00C6D3B7 /* Memory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Memory.swift; sourceTree = "<group>"; };
 		3F64EBC51CD039980072079B /* HomeStart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeStart.swift; sourceTree = "<group>"; };
 		3F67E2ED1CCD295300D8FB01 /* giphy-1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "giphy-1.gif"; path = "../../../giphy-1.gif"; sourceTree = "<group>"; };
 		3F67E2EF1CCD2E4600D8FB01 /* Shooting_Star.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = Shooting_Star.gif; path = ../../../Shooting_Star.gif; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				3FE721731CCFEBF5000B1CFC /* DisplayGameModes.swift */,
 				3FC347BB1CD0EDBC006A5941 /* DataController.swift */,
 				3F64EBC51CD039980072079B /* HomeStart.swift */,
+				3F259B871CD162AE00C6D3B7 /* Memory.swift */,
 				3FD074D51CD0DF76005B14A0 /* SettingsController.swift */,
 				3F967A451CB5614C00B80CD4 /* Main.storyboard */,
 				3F967A481CB5614C00B80CD4 /* Assets.xcassets */,
@@ -286,6 +289,7 @@
 				3F967A441CB5614C00B80CD4 /* ViewController.swift in Sources */,
 				3FC347BC1CD0EDBC006A5941 /* DataController.swift in Sources */,
 				3FD074D61CD0DF76005B14A0 /* SettingsController.swift in Sources */,
+				3F259B881CD162AE00C6D3B7 /* Memory.swift in Sources */,
 				3F64EBC61CD039980072079B /* HomeStart.swift in Sources */,
 				3FE721741CCFEBF5000B1CFC /* DisplayGameModes.swift in Sources */,
 				3F967A421CB5614C00B80CD4 /* AppDelegate.swift in Sources */,
