@@ -32,7 +32,6 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate, UIWebViewDe
     var wallExpired = 3
     var wallCounter = 0
 
-    
     var gravity : UIGravityBehavior!
     var animator : UIDynamicAnimator!
     
@@ -251,6 +250,4 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate, UIWebViewDe
     {
         dismissViewControllerAnimated(true, completion: nil)
     }
-
-    
 }

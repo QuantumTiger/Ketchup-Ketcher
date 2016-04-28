@@ -10,7 +10,6 @@ import UIKit
 
 class DataController: NSObject
 {
-    var modeStored = ""
+    var modeStored = "Classic"
     var modeCheck = 0
-    
 }

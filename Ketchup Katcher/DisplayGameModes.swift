@@ -57,5 +57,4 @@ class DisplayGameModes: UIViewController
     {
         dismissViewControllerAnimated(true, completion: nil)
     }
-    
 }

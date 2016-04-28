@@ -19,7 +19,6 @@ class HomeStart: UIViewController
     {
         super.viewDidLoad()
         modeLabel.text = "\(dataFound.modeStored)"
-        
     }
 
     @IBAction func homeStartButton(sender: AnyObject)
@@ -29,7 +28,6 @@ class HomeStart: UIViewController
             let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("ViewController") as! ViewController
             
             self.presentViewController(viewController, animated: true, completion: nil)
-            
         }
         if dataFound.modeCheck == 1
         {
