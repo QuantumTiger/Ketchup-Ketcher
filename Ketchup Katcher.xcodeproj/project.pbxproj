@@ -19,6 +19,7 @@
 		3F967A4C1CB5614C00B80CD4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F967A4A1CB5614C00B80CD4 /* LaunchScreen.storyboard */; };
 		3F967A571CB5614C00B80CD4 /* Ketchup_KatcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F967A561CB5614C00B80CD4 /* Ketchup_KatcherTests.swift */; };
 		3F967A621CB5614C00B80CD4 /* Ketchup_KatcherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F967A611CB5614C00B80CD4 /* Ketchup_KatcherUITests.swift */; };
+		3F9C93081CD3B45D002BB0FA /* original-c.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3F9C93071CD3B45D002BB0FA /* original-c.gif */; };
 		3FC347BC1CD0EDBC006A5941 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC347BB1CD0EDBC006A5941 /* DataController.swift */; };
 		3FD074D61CD0DF76005B14A0 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD074D51CD0DF76005B14A0 /* SettingsController.swift */; };
 		3FE721741CCFEBF5000B1CFC /* DisplayGameModes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE721731CCFEBF5000B1CFC /* DisplayGameModes.swift */; };
@@ -60,6 +61,7 @@
 		3F967A5D1CB5614C00B80CD4 /* Ketchup KatcherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Ketchup KatcherUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F967A611CB5614C00B80CD4 /* Ketchup_KatcherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ketchup_KatcherUITests.swift; sourceTree = "<group>"; };
 		3F967A631CB5614C00B80CD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F9C93071CD3B45D002BB0FA /* original-c.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "original-c.gif"; path = "../../../original-c.gif"; sourceTree = "<group>"; };
 		3FC347BB1CD0EDBC006A5941 /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		3FD074D51CD0DF76005B14A0 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		3FE721731CCFEBF5000B1CFC /* DisplayGameModes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayGameModes.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				3F967A451CB5614C00B80CD4 /* Main.storyboard */,
 				3F967A481CB5614C00B80CD4 /* Assets.xcassets */,
 				3F89BBD91CCD18D40003B317 /* checkerboard.gif */,
+				3F9C93071CD3B45D002BB0FA /* original-c.gif */,
 				3F67E2ED1CCD295300D8FB01 /* giphy-1.gif */,
 				3F67E2EF1CCD2E4600D8FB01 /* Shooting_Star.gif */,
 				3F967A4A1CB5614C00B80CD4 /* LaunchScreen.storyboard */,
@@ -262,6 +265,7 @@
 				3F967A491CB5614C00B80CD4 /* Assets.xcassets in Resources */,
 				3F967A471CB5614C00B80CD4 /* Main.storyboard in Resources */,
 				3F67E2F01CCD2E4600D8FB01 /* Shooting_Star.gif in Resources */,
+				3F9C93081CD3B45D002BB0FA /* original-c.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

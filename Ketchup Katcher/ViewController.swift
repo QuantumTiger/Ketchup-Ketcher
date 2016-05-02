@@ -20,6 +20,9 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate, UIWebViewDe
     var newWallRight = UIImageView()
     var ketchup = UIImageView()
     
+    var burgerLivesView = UIImageView()
+    var burgerLivesStore : [UIImageView] = []
+    
     var collisionBehavior = UICollisionBehavior()
     var myDynamicAnimator = UIDynamicAnimator()
     
@@ -31,11 +34,10 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate, UIWebViewDe
     
     var wallExpired = 3
     var wallCounter = 0
+    var burgerLives = 0
 
     var gravity : UIGravityBehavior!
     var animator : UIDynamicAnimator!
-    
-    @IBOutlet weak var modeLabel: UILabel!
     
     weak var timer : NSTimer?
     
@@ -65,13 +67,13 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate, UIWebViewDe
             {
                 let leftX = 0
                 
-                obstacle.frame = CGRect(x: leftX, y: 550, width: Int(arc4random_uniform(35) + 100), height: 40)
+                obstacle.frame = CGRect(x: leftX, y: 550, width: Int(arc4random_uniform(35) + 100), height: 30)
             }
             for obstacle in rightWallBarrierStore
             {
                 let rightX = Int(view.frame.width)
                 
-                obstacle.frame = CGRect(x: rightX, y: 550, width: -Int(arc4random_uniform(35) + 100), height: 40)
+                obstacle.frame = CGRect(x: rightX, y: 550, width: -Int(arc4random_uniform(35) + 100), height: 30)
             }
         }
             
@@ -104,8 +106,10 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate, UIWebViewDe
         filter.backgroundColor = UIColor.blackColor()
         filter.alpha = 0.05
         self.view.addSubview(filter)
+    
+        lives(3)
         
-        ketchup = UIImageView(frame: CGRect(x:view.center.x - 20, y: 30, width: 30, height: 75))
+        ketchup = UIImageView(frame: CGRect(x:view.center.x - 20, y: 65, width: 30, height: 75))
         ketchup.image = UIImage(named: "Ketchup")
         ketchup.layer.cornerRadius = 5
         ketchup.clipsToBounds = true
@@ -182,32 +186,44 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate, UIWebViewDe
     {
         let leftX = 0
         let rightX = Int(view.frame.width)
-        var leftDistanceBetween = 550
-        var rightDistanceBetween = 550
+        var leftDistanceBetween = Int(view.frame.width) + 175
+        var rightDistanceBetween = Int(view.frame.width) + 175
         
         var obstacleY = (Int(view.frame.height - 10) - (NumberOfLeftBarriers - 1) * 3) / NumberOfLeftBarriers
         
         for leftObstacle in 1...NumberOfLeftBarriers
         {
-            newWallLeft = UIImageView(frame: CGRect(x: leftX, y: leftDistanceBetween, width: Int(arc4random_uniform(100) + 35), height: 40))
+            newWallLeft = UIImageView(frame: CGRect(x: leftX, y: leftDistanceBetween, width: Int(arc4random_uniform(100) + 35), height: 30))
             newWallLeft.image = UIImage(named: "Wall Color")
             newWallLeft.clipsToBounds = true
             view.addSubview(newWallLeft)
             everythingStore.append(newWallLeft)
             leftWallBarrierStore.append(newWallLeft)
-            leftDistanceBetween -= 50
+            leftDistanceBetween -= 40
         }
         
         for rightObstacle in 1...NumberOfRightBarriers
         {
-            newWallRight = UIImageView(frame: CGRect(x: rightX, y: rightDistanceBetween, width: -Int(arc4random_uniform(100) + 35), height: 40))
+            newWallRight = UIImageView(frame: CGRect(x: rightX, y: rightDistanceBetween, width: -Int(arc4random_uniform(100) + 35), height: 30))
 //            newObstacleRight.transform = CGAffineTransformMakeScale(-1, 1)
             newWallRight.image = UIImage(named: "Wall Color")
             newWallRight.clipsToBounds = true
             view.addSubview(newWallRight)
             everythingStore.append(newWallRight)
             rightWallBarrierStore.append(newWallRight)
-            rightDistanceBetween -= 50
+            rightDistanceBetween -= 40
+        }
+    }
+    func lives(NumberOfLives : Int)
+    {
+        var imageSpace = view.center.x - 175
+        for lives in 1...NumberOfLives
+        {
+            burgerLivesView = UIImageView(frame: CGRect(x: imageSpace, y: view.center.y * 0.10, width: 35, height: 25))
+            burgerLivesView.image = UIImage(named: "Burger")
+            view.addSubview(burgerLivesView)
+            imageSpace += 40
+            burgerLives += 1
         }
     }
     
@@ -218,6 +234,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate, UIWebViewDe
             if item1.isEqual(burger) && item2.isEqual(leftWall) || item1.isEqual(leftWall) && item2.isEqual(burger)
             {
                 print("Game Over")
+                
 //                burger.removeFromSuperview()
 //                collisionBehavior.removeItem(burger)
             }
