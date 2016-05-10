@@ -1,36 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3Bo-nk-zIJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3Bo-nk-zIJ">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="DoO-JC-3nZ">
-            <objects>
-                <viewController id="Jbq-1X-WUP" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="1nk-Qu-HsD"/>
-                        <viewControllerLayoutGuide type="bottom" id="WRS-Kt-jvz"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="3j8-XK-hLk">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qj6-31-xaf">
-                                <rect key="frame" x="164" y="319" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Fcc-Os-uE0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-780.5" y="497.5"/>
-        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -109,7 +84,7 @@
         <!--Galactic Burger-->
         <scene sceneID="YLy-d0-5tj">
             <objects>
-                <viewController storyboardIdentifier="Memory" useStoryboardIdentifierAsRestorationIdentifier="YES" id="X5I-X0-wcH" customClass="GalacticBurger" customModule="Ketchup_Katcher" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GalacticBurger" useStoryboardIdentifierAsRestorationIdentifier="YES" id="X5I-X0-wcH" customClass="GalacticBurger" customModule="Ketchup_Katcher" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7Gi-q3-tFH"/>
                         <viewControllerLayoutGuide type="bottom" id="5ZF-Sg-2bQ"/>
@@ -147,9 +122,19 @@
                                 <state key="normal" title="Ready?">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="startGameButtonTapped:" destination="X5I-X0-wcH" eventType="touchUpInside" id="8By-hV-CYM"/>
+                                </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Lives: 5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RJA-NK-I1Q">
+                                <rect key="frame" x="20" y="580" width="100" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" name="controlDarkShadowColor" catalog="System" colorSpace="catalog"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="Bpd-YR-l21" firstAttribute="top" secondItem="7Gi-q3-tFH" secondAttribute="bottom" constant="25" id="EkJ-jW-AXh"/>
                             <constraint firstItem="Bpd-YR-l21" firstAttribute="trailing" secondItem="diQ-cf-oVf" secondAttribute="trailingMargin" constant="-20" id="Tb1-Zp-Hyc"/>
@@ -157,13 +142,22 @@
                             <constraint firstItem="KhL-ym-I5d" firstAttribute="centerX" secondItem="diQ-cf-oVf" secondAttribute="centerX" id="d8k-Ha-dJE"/>
                             <constraint firstItem="622-2G-8LI" firstAttribute="top" secondItem="7Gi-q3-tFH" secondAttribute="bottom" constant="25" id="n7u-Uf-4P3"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="P8N-aZ-GhE" appends="YES" id="3RZ-2a-iqW"/>
+                        </connections>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="livesLabel" destination="RJA-NK-I1Q" id="Xzc-a7-AiF"/>
                         <outlet property="startButton" destination="KhL-ym-I5d" id="KmY-My-fsD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Hx-SH-Ppt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="P8N-aZ-GhE">
+                    <connections>
+                        <action selector="dragPad:" destination="X5I-X0-wcH" id="9gf-SG-Fnn"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-780.5" y="-217.5"/>
         </scene>
