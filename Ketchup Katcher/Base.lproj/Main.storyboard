@@ -1,11 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3Bo-nk-zIJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3Bo-nk-zIJ">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--View Controller-->
+        <scene sceneID="DoO-JC-3nZ">
+            <objects>
+                <viewController id="Jbq-1X-WUP" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1nk-Qu-HsD"/>
+                        <viewControllerLayoutGuide type="bottom" id="WRS-Kt-jvz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3j8-XK-hLk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qj6-31-xaf">
+                                <rect key="frame" x="164" y="319" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fcc-Os-uE0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-780.5" y="497.5"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -81,10 +106,10 @@
             </objects>
             <point key="canvasLocation" x="280.5" y="-211.5"/>
         </scene>
-        <!--Memory-->
+        <!--Galactic Burger-->
         <scene sceneID="YLy-d0-5tj">
             <objects>
-                <viewController storyboardIdentifier="Memory" useStoryboardIdentifierAsRestorationIdentifier="YES" id="X5I-X0-wcH" customClass="Memory" customModule="Ketchup_Katcher" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Memory" useStoryboardIdentifierAsRestorationIdentifier="YES" id="X5I-X0-wcH" customClass="GalacticBurger" customModule="Ketchup_Katcher" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7Gi-q3-tFH"/>
                         <viewControllerLayoutGuide type="bottom" id="5ZF-Sg-2bQ"/>
@@ -93,8 +118,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Memory" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bpd-YR-l21">
-                                <rect key="frame" x="285" y="28" width="70" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Galactic Breaker" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bpd-YR-l21">
+                                <rect key="frame" x="229" y="28" width="126" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="0Kf-V3-WSJ"/>
                                     <constraint firstAttribute="height" constant="21" id="eH7-LE-Iki"/>
@@ -134,6 +159,9 @@
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="startButton" destination="KhL-ym-I5d" id="KmY-My-fsD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Hx-SH-Ppt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -255,7 +283,7 @@
                                 </state>
                                 <connections>
                                     <action selector="memoryModeButton:" destination="jl5-8W-jye" eventType="touchUpInside" id="UUd-TW-WpD"/>
-                                    <segue destination="3Bo-nk-zIJ" kind="showDetail" identifier="MemoryMode" id="Zb7-ch-MtH"/>
+                                    <segue destination="3Bo-nk-zIJ" kind="showDetail" identifier="GalacticBurger" id="Zb7-ch-MtH"/>
                                 </connections>
                             </button>
                         </subviews>

@@ -107,19 +107,19 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate, UIWebViewDe
             perfectRuns = Int(runs)!
         }
         
-        let filePath = NSBundle.mainBundle().pathForResource("giphy-1", ofType: "gif")
-        let gif = NSData(contentsOfFile: filePath!)
-        
-        let webViewBG = UIWebView(frame: self.view.frame)
-        webViewBG.loadData(gif!, MIMEType: "image/gif", textEncodingName: String(), baseURL: NSURL())
-        webViewBG.userInteractionEnabled = false
-        self.view.addSubview(webViewBG)
-        
-        let filter = UIView()
-        filter.frame = self.view.frame
-        filter.backgroundColor = UIColor.blackColor()
-        filter.alpha = 0.05
-        self.view.addSubview(filter)
+//        let filePath = NSBundle.mainBundle().pathForResource("giphy-1", ofType: "gif")
+//        //let gif = NSData(contentsOfFile: filePath!)
+//        
+//        let webViewBG = UIWebView(frame: self.view.frame)
+//        webViewBG.loadData(gif!, MIMEType: "image/gif", textEncodingName: String(), baseURL: NSURL())
+//        webViewBG.userInteractionEnabled = false
+//        self.view.addSubview(webViewBG)
+//        
+//        let filter = UIView()
+//        filter.frame = self.view.frame
+//        filter.backgroundColor = UIColor.blackColor()
+//        filter.alpha = 0.05
+//        self.view.addSubview(filter)
         
         lives()
         
