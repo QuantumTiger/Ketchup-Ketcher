@@ -263,7 +263,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate, UIWebViewDe
         timer?.invalidate()
         wallExpired = 0
         perfectRuns = 0
-        dismissViewControllerAnimated(true, completion: nil)
+//        dismissViewControllerAnimated(true, completion: nil)
     }
     func winner()
     {
