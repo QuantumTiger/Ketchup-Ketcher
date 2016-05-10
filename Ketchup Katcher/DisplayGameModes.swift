@@ -29,7 +29,7 @@ class DisplayGameModes: UIViewController
             let classicMode = segue.destinationViewController as! HomeStart;
             classicMode.dataFound = data
         }
-        else if (segue.identifier == "MemoryMode")
+        else if (segue.identifier == "GalacticBurger")
         {
             let memoryMode = segue.destinationViewController as! HomeStart;
             memoryMode.dataFound = data

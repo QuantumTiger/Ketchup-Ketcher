@@ -31,7 +31,7 @@ class HomeStart: UIViewController
         }
         if dataFound.modeCheck == 1
         {
-            let memory = self.storyboard!.instantiateViewControllerWithIdentifier("Memory") as! Memory
+            let memory = self.storyboard!.instantiateViewControllerWithIdentifier("GalacticBurger") as! GalacticBurger
             
             self.presentViewController(memory, animated: true, completion: nil)
         }
