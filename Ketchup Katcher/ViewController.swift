@@ -32,9 +32,15 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate, UIWebViewDe
     var leftWallBarrierStore : [UIImageView] = []
     var rightWallBarrierStore : [UIImageView] = []
     
+    @IBOutlet weak var notSureButton: UIButton!
+    @IBOutlet weak var classicLabel: UILabel!
+    
     var wallExpired = 3
     var wallCounter = 0
-    var burgerLives = 0
+    var burgerLives = 0.0
+    
+    var perfectRuns = 0
+    let defaults = NSUserDefaults.standardUserDefaults()
 
     var gravity : UIGravityBehavior!
     var animator : UIDynamicAnimator!
@@ -42,6 +48,8 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate, UIWebViewDe
     weak var timer : NSTimer?
     
     @IBOutlet weak var startButton: UIButton!
+    
+    var livesLabel = UILabel()
     
     override func viewDidLoad()
     {
@@ -56,7 +64,6 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate, UIWebViewDe
         if wallExpired / 2 == 1
         {
             print("Wall Removed")
-            print("\(CGRectGetMaxY(view.frame))", "\(CGRectGetMaxX(view.frame))")
             for newWall in randomObstacle
             {
                 newWall.frame = CGRectMake(CGFloat(arc4random_uniform(130) + 130), CGFloat(arc4random_uniform(450) + 100), 25, 25)
@@ -86,6 +93,8 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate, UIWebViewDe
     @IBAction func startGameGo(sender: AnyObject)
     {
         startButton.hidden = true
+        notSureButton.hidden = true
+        classicLabel.hidden = true
         timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(ViewController.countdown), userInfo: nil, repeats: true)
         NSRunLoop.currentRunLoop().addTimer(timer!, forMode: NSRunLoopCommonModes)
         game()
@@ -93,6 +102,11 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate, UIWebViewDe
     
     func game()
     {
+        if let runs = defaults.stringForKey("Perfect Runs")
+        {
+            perfectRuns = Int(runs)!
+        }
+        
         let filePath = NSBundle.mainBundle().pathForResource("giphy-1", ofType: "gif")
         let gif = NSData(contentsOfFile: filePath!)
         
@@ -106,8 +120,8 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate, UIWebViewDe
         filter.backgroundColor = UIColor.blackColor()
         filter.alpha = 0.05
         self.view.addSubview(filter)
-    
-        lives(3)
+        
+        lives()
         
         ketchup = UIImageView(frame: CGRect(x:view.center.x - 20, y: 65, width: 30, height: 75))
         ketchup.image = UIImage(named: "Ketchup")
@@ -189,8 +203,6 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate, UIWebViewDe
         var leftDistanceBetween = Int(view.frame.width) + 175
         var rightDistanceBetween = Int(view.frame.width) + 175
         
-        var obstacleY = (Int(view.frame.height - 10) - (NumberOfLeftBarriers - 1) * 3) / NumberOfLeftBarriers
-        
         for leftObstacle in 1...NumberOfLeftBarriers
         {
             newWallLeft = UIImageView(frame: CGRect(x: leftX, y: leftDistanceBetween, width: Int(arc4random_uniform(100) + 35), height: 30))
@@ -214,17 +226,72 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate, UIWebViewDe
             rightDistanceBetween -= 40
         }
     }
-    func lives(NumberOfLives : Int)
+    
+    func gameOver()
+    {
+        let gameOverAlert = UIAlertController(title: "Try Again", message: "You Failed", preferredStyle: .Alert)
+        self.presentViewController(gameOverAlert, animated: true, completion: nil)
+        let dismiss = UIAlertAction(title: "Better Luck Next Time", style: UIAlertActionStyle.Cancel, handler: nil)
+        gameOverAlert.addAction(dismiss)
+        livesLabel.removeFromSuperview()
+        burger.removeFromSuperview()
+        collisionBehavior.removeItem(burger)
+        ketchup.removeFromSuperview()
+        everythingStore.removeAll()
+        for leftwall in leftWallBarrierStore
+        {
+            leftwall.hidden = true
+            leftWallBarrierStore.removeAll()
+            newWallLeft.hidden = true
+            myDynamicAnimator.updateItemUsingCurrentState(leftwall)
+        }
+        for rightwall in rightWallBarrierStore
+        {
+            rightwall.hidden = true
+            rightWallBarrierStore.removeAll()
+            newWallRight.hidden = true
+            myDynamicAnimator.updateItemUsingCurrentState(rightwall)
+        }
+            for newObstacle in randomObstacle
+        {
+            newObstacle.hidden = true
+            randomObstacle.removeAll()
+            obstacle.hidden = true
+            myDynamicAnimator.updateItemUsingCurrentState(newObstacle)
+        }
+        
+        timer?.invalidate()
+        wallExpired = 0
+        perfectRuns = 0
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    func winner()
+    {
+        defaults.setInteger(perfectRuns, forKey: "Perfect Runs")
+        perfectRuns += 1
+        burger.frame = CGRectMake(view.center.x - 20, view.center.y * 1.8, 55, 45)
+        myDynamicAnimator.updateItemUsingCurrentState(burger)
+        
+        let scoreKeep = UIAlertController(title: "Winner", message: "You Caught the Ketchup!!! \n Perfect Runs : \(perfectRuns)", preferredStyle: .Alert)
+        self.presentViewController(scoreKeep, animated: true, completion: nil)
+        let dismiss = UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Cancel, handler: nil)
+        scoreKeep.addAction(dismiss)
+    }
+    
+    func lives()
     {
         var imageSpace = view.center.x - 175
-        for lives in 1...NumberOfLives
-        {
-            burgerLivesView = UIImageView(frame: CGRect(x: imageSpace, y: view.center.y * 0.10, width: 35, height: 25))
-            burgerLivesView.image = UIImage(named: "Burger")
-            view.addSubview(burgerLivesView)
-            imageSpace += 40
-            burgerLives += 1
-        }
+        burgerLivesView = UIImageView(frame: CGRect(x: imageSpace, y: view.center.y * 0.10, width: 35, height: 25))
+        burgerLivesView.image = UIImage(named: "Burger")
+        view.addSubview(burgerLivesView)
+        burgerLivesStore.append(burgerLivesView)
+        burgerLives = 3
+        
+        livesLabel = UILabel(frame: CGRect(x: view.center.x - 215, y: view.center.y * 0.0, width: 200, height: 100))
+        livesLabel.textAlignment = NSTextAlignment.Center
+        livesLabel.text = "X : \(burgerLives)"
+        livesLabel.textColor = UIColor.whiteColor()
+        self.view.addSubview(livesLabel)
     }
     
     func collisionBehavior(behavior: UICollisionBehavior, beganContactForItem item1: UIDynamicItem, withItem item2: UIDynamicItem, atPoint p: CGPoint)
@@ -233,26 +300,51 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate, UIWebViewDe
         {
             if item1.isEqual(burger) && item2.isEqual(leftWall) || item1.isEqual(leftWall) && item2.isEqual(burger)
             {
-                print("Game Over")
-                
-//                burger.removeFromSuperview()
-//                collisionBehavior.removeItem(burger)
+                burgerLives -= 1
+                livesLabel.text = "X : \(burgerLives)"
+                if burgerLives == 0.0
+                {
+                    print("Game Over")
+                    gameOver()
+                }
+                else if burgerLives < 0.0
+                {
+                    gameOver()
+                }
             }
         }
         for rightWall in rightWallBarrierStore
         {
             if item1.isEqual(burger) && item2.isEqual(rightWall) || item1.isEqual(rightWall) && item2.isEqual(burger)
             {
-                print("Game Over")
-//                burger.removeFromSuperview()
-//                collisionBehavior.removeItem(burger)
+                burgerLives -= 1
+                livesLabel.text = "X : \(burgerLives)"
+                if burgerLives == 0.0
+                {
+                    print("Game Over")
+                    gameOver()
+                }
+                else if burgerLives < 0.0
+                {
+                    gameOver()
+                }
             }
         }
         for obstacle in randomObstacle
         {
             if item1.isEqual(burger) && item2.isEqual(obstacle) || item1.isEqual(obstacle) && item2.isEqual(burger)
             {
-                print("Restart")
+                burgerLives -= 0.5
+                livesLabel.text = "X : \(burgerLives)"
+                if burgerLives == 0.0
+                {
+                    print("Restart")
+                    gameOver()
+                }
+                else if burgerLives < 0.0
+                {
+                    gameOver()
+                }
                 burger.frame = CGRectMake(view.center.x - 20, view.center.y * 1.8, 55, 45)
                 myDynamicAnimator.updateItemUsingCurrentState(burger)
             }
@@ -260,6 +352,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate, UIWebViewDe
         if item1.isEqual(burger) && item2.isEqual(ketchup) || item1.isEqual(ketchup) && item2.isEqual(burger)
         {
             print("Winner")
+            winner()
         }
     }
     
