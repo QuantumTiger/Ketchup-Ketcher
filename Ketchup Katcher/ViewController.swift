@@ -32,6 +32,8 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate, UIWebViewDe
     var leftWallBarrierStore : [UIImageView] = []
     var rightWallBarrierStore : [UIImageView] = []
     
+    var dataFound = DataController()
+    
     @IBOutlet weak var notSureButton: UIButton!
     @IBOutlet weak var classicLabel: UILabel!
     
@@ -107,19 +109,19 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate, UIWebViewDe
             perfectRuns = Int(runs)!
         }
         
-//        let filePath = NSBundle.mainBundle().pathForResource("giphy-1", ofType: "gif")
-//        //let gif = NSData(contentsOfFile: filePath!)
-//        
-//        let webViewBG = UIWebView(frame: self.view.frame)
-//        webViewBG.loadData(gif!, MIMEType: "image/gif", textEncodingName: String(), baseURL: NSURL())
-//        webViewBG.userInteractionEnabled = false
-//        self.view.addSubview(webViewBG)
-//        
-//        let filter = UIView()
-//        filter.frame = self.view.frame
-//        filter.backgroundColor = UIColor.blackColor()
-//        filter.alpha = 0.05
-//        self.view.addSubview(filter)
+        let filePath = NSBundle.mainBundle().pathForResource("giphy-1", ofType: "gif")
+        let gif = NSData(contentsOfFile: filePath!)
+        
+        let webViewBG = UIWebView(frame: self.view.frame)
+        webViewBG.loadData(gif!, MIMEType: "image/gif", textEncodingName: String(), baseURL: NSURL())
+        webViewBG.userInteractionEnabled = false
+        self.view.addSubview(webViewBG)
+        
+        let filter = UIView()
+        filter.frame = self.view.frame
+        filter.backgroundColor = UIColor.blackColor()
+        filter.alpha = 0.05
+        self.view.addSubview(filter)
         
         lives()
         
@@ -189,7 +191,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate, UIWebViewDe
         {
             let newObstacle = UIImageView(frame: CGRect(x: Int(arc4random_uniform(200) + 50), y: Int(arc4random_uniform(450) + 100), width: 25, height: 25))
             newObstacle.frame = CGRectMake(CGFloat(arc4random_uniform(200) + 50), CGFloat(arc4random_uniform(450) + 100), 25, 25)
-            newObstacle.image = UIImage(named: "Wall Color")
+            newObstacle.image = UIImage(named: "Meteor")
             view.addSubview(newObstacle)
             randomObstacle.append(newObstacle)
             everythingStore.append(newObstacle)
@@ -206,7 +208,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate, UIWebViewDe
         for leftObstacle in 1...NumberOfLeftBarriers
         {
             newWallLeft = UIImageView(frame: CGRect(x: leftX, y: leftDistanceBetween, width: Int(arc4random_uniform(100) + 35), height: 30))
-            newWallLeft.image = UIImage(named: "Wall Color")
+            newWallLeft.image = UIImage(named: "UFO")
             newWallLeft.clipsToBounds = true
             view.addSubview(newWallLeft)
             everythingStore.append(newWallLeft)
@@ -218,7 +220,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate, UIWebViewDe
         {
             newWallRight = UIImageView(frame: CGRect(x: rightX, y: rightDistanceBetween, width: -Int(arc4random_uniform(100) + 35), height: 30))
 //            newObstacleRight.transform = CGAffineTransformMakeScale(-1, 1)
-            newWallRight.image = UIImage(named: "Wall Color")
+            newWallRight.image = UIImage(named: "UFO")
             newWallRight.clipsToBounds = true
             view.addSubview(newWallRight)
             everythingStore.append(newWallRight)
@@ -238,6 +240,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate, UIWebViewDe
         collisionBehavior.removeItem(burger)
         ketchup.removeFromSuperview()
         everythingStore.removeAll()
+        dismissViewControllerAnimated(true, completion: nil)
         for leftwall in leftWallBarrierStore
         {
             leftwall.hidden = true
@@ -263,8 +266,8 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate, UIWebViewDe
         timer?.invalidate()
         wallExpired = 0
         perfectRuns = 0
-//        dismissViewControllerAnimated(true, completion: nil)
     }
+
     func winner()
     {
         defaults.setInteger(perfectRuns, forKey: "Perfect Runs")

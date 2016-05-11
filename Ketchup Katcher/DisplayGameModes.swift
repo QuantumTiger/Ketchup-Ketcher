@@ -49,7 +49,7 @@ class DisplayGameModes: UIViewController
     {
         memoryButton.backgroundColor = UIColor(red: 94, green: 94, blue: 94, alpha: 0.05)
         classicButton.backgroundColor = UIColor(red: 94, green: 94, blue: 94, alpha: 0.15)
-        data.modeStored = "Memory"
+        data.modeStored = "Galactic Burger"
         data.modeCheck = 1
     }
     

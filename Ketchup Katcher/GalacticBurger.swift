@@ -17,7 +17,6 @@ class GalacticBurger: UIViewController, UICollisionBehaviorDelegate
     var imageNames = ["lettuce", "tomato", "pickles"]
     var brickArray : [UIImageView] = []
     
-    
     @IBOutlet weak var livesLabel: UILabel!
     @IBOutlet weak var startButton: UIButton!
     
@@ -58,7 +57,6 @@ class GalacticBurger: UIViewController, UICollisionBehaviorDelegate
         paddle.clipsToBounds = true
         view.addSubview(paddle)
         
-        
         myDynamicAnimator = UIDynamicAnimator(referenceView: view)
         
         let ballDynamiceBehavior = UIDynamicItemBehavior(items: [ball])
@@ -82,10 +80,9 @@ class GalacticBurger: UIViewController, UICollisionBehaviorDelegate
         brickDynamiceBehavior.allowsRotation = false
         myDynamicAnimator.addBehavior(brickDynamiceBehavior)
         
-        
         let pushBehavior = UIPushBehavior(items: [ball], mode: .Instantaneous)
-        pushBehavior.angle = 1.1
-        pushBehavior.magnitude = 1.0 //Force given
+        pushBehavior.angle = 1.90
+        pushBehavior.magnitude = 1.5 //Force given
         myDynamicAnimator.addBehavior(pushBehavior)
         
         collisionBehavior = UICollisionBehavior(items: everythingArray)
@@ -94,6 +91,7 @@ class GalacticBurger: UIViewController, UICollisionBehaviorDelegate
         collisionBehavior.collisionDelegate = self
         myDynamicAnimator.addBehavior(collisionBehavior)
     }
+    
     func makeBricks(NumberOfBricks: Int, YValue: CGFloat)
     {
         var xPoint = 5
@@ -112,7 +110,6 @@ class GalacticBurger: UIViewController, UICollisionBehaviorDelegate
             everythingArray.append(newBlock)
             xPoint += brickWidth + 3
         }
-        
     }
     
     @IBAction func startGameButtonTapped(sender: UIButton)
@@ -135,6 +132,7 @@ class GalacticBurger: UIViewController, UICollisionBehaviorDelegate
         paddle.center = CGPointMake(panGesture, paddle.center.y)
         myDynamicAnimator.updateItemUsingCurrentState(paddle)
     }
+    
     func collisionBehavior(behavior: UICollisionBehavior, beganContactForItem item: UIDynamicItem, withBoundaryIdentifier identifier: NSCopying?, atPoint p: CGPoint)
     {
         if item.isEqual(ball) && p.y > paddle.center.y
@@ -186,7 +184,6 @@ class GalacticBurger: UIViewController, UICollisionBehaviorDelegate
                     collisionBehavior.removeItem(brick)
                     myDynamicAnimator.updateItemUsingCurrentState(brick)
                 }
-                
             }
         }
     }
@@ -208,6 +205,5 @@ class GalacticBurger: UIViewController, UICollisionBehaviorDelegate
         collisionBehavior.removeItem(paddle)
         myDynamicAnimator.updateItemUsingCurrentState(ball)
         myDynamicAnimator.updateItemUsingCurrentState(paddle)
-        
     }
 }

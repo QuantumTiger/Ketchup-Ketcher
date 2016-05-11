@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		3F259B881CD162AE00C6D3B7 /* GalacticBurger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F259B871CD162AE00C6D3B7 /* GalacticBurger.swift */; };
+		3F2AC8B61CE36168006CD3D1 /* giphy-1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3F2AC8B51CE36168006CD3D1 /* giphy-1.gif */; };
+		3F2AC8B71CE36168006CD3D1 /* giphy-1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3F2AC8B51CE36168006CD3D1 /* giphy-1.gif */; };
+		3F2AC8B81CE36168006CD3D1 /* giphy-1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3F2AC8B51CE36168006CD3D1 /* giphy-1.gif */; };
 		3F64EBC61CD039980072079B /* HomeStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F64EBC51CD039980072079B /* HomeStart.swift */; };
 		3F967A421CB5614C00B80CD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F967A411CB5614C00B80CD4 /* AppDelegate.swift */; };
 		3F967A441CB5614C00B80CD4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F967A431CB5614C00B80CD4 /* ViewController.swift */; };
@@ -17,7 +20,6 @@
 		3F967A571CB5614C00B80CD4 /* Ketchup_KatcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F967A561CB5614C00B80CD4 /* Ketchup_KatcherTests.swift */; };
 		3F967A621CB5614C00B80CD4 /* Ketchup_KatcherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F967A611CB5614C00B80CD4 /* Ketchup_KatcherUITests.swift */; };
 		3FC347BC1CD0EDBC006A5941 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC347BB1CD0EDBC006A5941 /* DataController.swift */; };
-		3FD074D61CD0DF76005B14A0 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD074D51CD0DF76005B14A0 /* SettingsController.swift */; };
 		3FE721741CCFEBF5000B1CFC /* DisplayGameModes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE721731CCFEBF5000B1CFC /* DisplayGameModes.swift */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		3F259B871CD162AE00C6D3B7 /* GalacticBurger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalacticBurger.swift; sourceTree = "<group>"; };
+		3F2AC8B51CE36168006CD3D1 /* giphy-1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "giphy-1.gif"; sourceTree = "<group>"; };
 		3F64EBC51CD039980072079B /* HomeStart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeStart.swift; sourceTree = "<group>"; };
 		3F967A3E1CB5614C00B80CD4 /* Ketchup Katcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ketchup Katcher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F967A411CB5614C00B80CD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -55,7 +58,6 @@
 		3F967A611CB5614C00B80CD4 /* Ketchup_KatcherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ketchup_KatcherUITests.swift; sourceTree = "<group>"; };
 		3F967A631CB5614C00B80CD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3FC347BB1CD0EDBC006A5941 /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
-		3FD074D51CD0DF76005B14A0 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		3FE721731CCFEBF5000B1CFC /* DisplayGameModes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayGameModes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -84,6 +86,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F2AC8B91CE36173006CD3D1 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				3F2AC8B51CE36168006CD3D1 /* giphy-1.gif */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		3F967A351CB5614C00B80CD4 = {
 			isa = PBXGroup;
 			children = (
@@ -113,7 +123,7 @@
 				3FC347BB1CD0EDBC006A5941 /* DataController.swift */,
 				3F64EBC51CD039980072079B /* HomeStart.swift */,
 				3F259B871CD162AE00C6D3B7 /* GalacticBurger.swift */,
-				3FD074D51CD0DF76005B14A0 /* SettingsController.swift */,
+				3F2AC8B91CE36173006CD3D1 /* Images */,
 				3F967A451CB5614C00B80CD4 /* Main.storyboard */,
 				3F967A481CB5614C00B80CD4 /* Assets.xcassets */,
 				3F967A4A1CB5614C00B80CD4 /* LaunchScreen.storyboard */,
@@ -249,6 +259,7 @@
 			files = (
 				3F967A4C1CB5614C00B80CD4 /* LaunchScreen.storyboard in Resources */,
 				3F967A491CB5614C00B80CD4 /* Assets.xcassets in Resources */,
+				3F2AC8B61CE36168006CD3D1 /* giphy-1.gif in Resources */,
 				3F967A471CB5614C00B80CD4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,6 +268,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F2AC8B71CE36168006CD3D1 /* giphy-1.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,6 +276,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F2AC8B81CE36168006CD3D1 /* giphy-1.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,7 +289,6 @@
 			files = (
 				3F967A441CB5614C00B80CD4 /* ViewController.swift in Sources */,
 				3FC347BC1CD0EDBC006A5941 /* DataController.swift in Sources */,
-				3FD074D61CD0DF76005B14A0 /* SettingsController.swift in Sources */,
 				3F259B881CD162AE00C6D3B7 /* GalacticBurger.swift in Sources */,
 				3F64EBC61CD039980072079B /* HomeStart.swift in Sources */,
 				3FE721741CCFEBF5000B1CFC /* DisplayGameModes.swift in Sources */,
