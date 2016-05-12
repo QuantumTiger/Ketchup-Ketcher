@@ -30,6 +30,7 @@ class GalacticBurger: UIViewController, UICollisionBehaviorDelegate
     
     func createGame()
     {
+        view.backgroundColor = UIColor(patternImage: UIImage(named: "space")!)
         continueGame()
         
         lives = 5
@@ -95,7 +96,7 @@ class GalacticBurger: UIViewController, UICollisionBehaviorDelegate
         for bricks in 1...NumberOfBricks
         {
             let newBlock = UIImageView(frame: CGRectMake(CGFloat(xPoint), YValue + 20, CGFloat(brickWidth), 50))
-            newBlock.image = UIImage(named: "pickles")
+            newBlock.image = UIImage(named: "UFO")
             newBlock.contentMode = UIViewContentMode.ScaleAspectFit
             print("brick made")
             view.addSubview(newBlock)
@@ -171,7 +172,11 @@ class GalacticBurger: UIViewController, UICollisionBehaviorDelegate
                 {
                     brick.image = UIImage(named: "pickles")
                 }
-               else if brick.image == UIImage(named: "lettuce")
+               else if brick.image == UIImage(named: "pickles")
+                {
+                    brick.image = UIImage(named: "lettuce")
+                }
+                else if brick.image == UIImage(named: "lettuce")
                 {
                     brick.image = UIImage(named: "tomato")
                 }
