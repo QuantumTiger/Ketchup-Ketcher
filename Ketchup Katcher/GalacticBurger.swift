@@ -41,8 +41,6 @@ class GalacticBurger: UIViewController, UICollisionBehaviorDelegate
         // Add ball
         ball = UIImageView(frame: CGRectMake(view.center.x - 10, view.center.y, 50, 50))
         ball.image = UIImage(named: "splat")
-        // Remove Bottom Line of Code
-        ball.backgroundColor = UIColor.blackColor()
         ball.layer.cornerRadius = 10.25
         ball.clipsToBounds = true
         view.addSubview(ball)
@@ -50,8 +48,6 @@ class GalacticBurger: UIViewController, UICollisionBehaviorDelegate
         // Add Paddle
         paddle = UIImageView(frame: CGRectMake(view.center.x - 40, view.center.y * 1.75, 100, 50))
         paddle.image = UIImage(named: "Rounded")
-        // Remove Bottom Line of Code
-        paddle.backgroundColor = UIColor.cyanColor()
         paddle.layer.cornerRadius = 5
         paddle.clipsToBounds = true
         view.addSubview(paddle)
@@ -100,10 +96,8 @@ class GalacticBurger: UIViewController, UICollisionBehaviorDelegate
         {
             let newBlock = UIImageView(frame: CGRectMake(CGFloat(xPoint), YValue + 20, CGFloat(brickWidth), 50))
             newBlock.image = UIImage(named: "pickles")
-            // Remove Bottom Line of Code
-            newBlock.backgroundColor = UIColor.greenColor()
             newBlock.contentMode = UIViewContentMode.ScaleAspectFit
-//            print("brick made")
+            print("brick made")
             view.addSubview(newBlock)
             brickArray.append(newBlock)
             everythingArray.append(newBlock)
@@ -113,10 +107,8 @@ class GalacticBurger: UIViewController, UICollisionBehaviorDelegate
     
     @IBAction func startGameButtonTapped(sender: UIButton)
     {
-        //everythingArray.removeAll()
-        //brickArray.removeAll()
-        // Remove Bottom Line of Code
-        view.backgroundColor = UIColor.whiteColor()
+        everythingArray.removeAll()
+        brickArray.removeAll()
         makeBricks(7, YValue: 20)
         makeBricks(5, YValue: 45)
         makeBricks(10, YValue: 70)
@@ -174,20 +166,14 @@ class GalacticBurger: UIViewController, UICollisionBehaviorDelegate
         {
             if item1.isEqual(ball) && item2.isEqual(brick) || item1.isEqual(brick) && item2.isEqual(ball)
             {
-//                print("Hit Brick")
-//                if brick.image == UIImage(named: "pickles")
-                    if brick.backgroundColor == UIColor.greenColor()
+                print("Hit Brick")
+                if brick.image == UIImage(named: "pickles")
                 {
-                    brick.image = UIImage(named: "lettuce")
-                    // Remove Bottom Line of Code
-                    brick.backgroundColor = UIColor.blueColor()
+                    brick.image = UIImage(named: "UFO")
                 }
-//                else if brick.image == UIImage(named: "lettuce")
-                else if brick.backgroundColor == UIColor.blueColor()
+               else if brick.image == UIImage(named: "lettuce")
                 {
                     brick.image = UIImage(named: "tomato")
-                    // Remove Bottom Line of Code
-                    brick.backgroundColor = UIColor.redColor()
                 }
                 else
                 {
