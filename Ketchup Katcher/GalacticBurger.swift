@@ -18,10 +18,14 @@ class GalacticBurger: UIViewController, UICollisionBehaviorDelegate
     var brickArray : [UIImageView] = []
     
     var livesLabel = UILabel()
+    
     @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var notSureButton: UIButton!
     
     var myDynamicAnimator = UIDynamicAnimator()
     var everythingArray : [UIImageView] = []
+    
+    @IBOutlet weak var modeLabel: UILabel!
     
     override func viewDidLoad()
     {
@@ -30,6 +34,9 @@ class GalacticBurger: UIViewController, UICollisionBehaviorDelegate
     
     func createGame()
     {
+        livesLabel.textColor = UIColor.whiteColor()
+        notSureButton.removeFromSuperview()
+        modeLabel.removeFromSuperview()
         view.backgroundColor = UIColor(patternImage: UIImage(named: "space")!)
         continueGame()
         
@@ -115,7 +122,7 @@ class GalacticBurger: UIViewController, UICollisionBehaviorDelegate
         makeBricks(10, YValue: 70)
         startButton.hidden = true
         lives = 5
-        livesLabel = UILabel(frame: CGRectMake(view.center.x - 175, view.center.y * 1.90, 200, 20))
+        livesLabel = UILabel(frame: CGRectMake(view.center.x - 145, view.center.y * 1.90, 200, 20))
         view.addSubview(livesLabel)
         createGame()
     }
@@ -147,7 +154,7 @@ class GalacticBurger: UIViewController, UICollisionBehaviorDelegate
             
             if lives > 0
             {
-                livesLabel.text = "lives: \(lives)"
+                livesLabel.text = "Lives: \(lives)"
                 ball.center = view.center
                 myDynamicAnimator.updateItemUsingCurrentState(ball)
             }
