@@ -17,12 +17,11 @@ class GalacticBurger: UIViewController, UICollisionBehaviorDelegate
     var imageNames = ["lettuce", "tomato", "pickles"]
     var brickArray : [UIImageView] = []
     
-    @IBOutlet weak var livesLabel: UILabel!
+    var livesLabel = UILabel()
     @IBOutlet weak var startButton: UIButton!
     
     var myDynamicAnimator = UIDynamicAnimator()
     var everythingArray : [UIImageView] = []
-    
     
     override func viewDidLoad()
     {
@@ -104,7 +103,7 @@ class GalacticBurger: UIViewController, UICollisionBehaviorDelegate
             // Remove Bottom Line of Code
             newBlock.backgroundColor = UIColor.greenColor()
             newBlock.contentMode = UIViewContentMode.ScaleAspectFit
-            print("brick made")
+//            print("brick made")
             view.addSubview(newBlock)
             brickArray.append(newBlock)
             everythingArray.append(newBlock)
@@ -123,9 +122,22 @@ class GalacticBurger: UIViewController, UICollisionBehaviorDelegate
         makeBricks(10, YValue: 70)
         startButton.hidden = true
         lives = 5
+        livesLabel = UILabel(frame: CGRectMake(view.center.x - 175, view.center.y * 1.90, 200, 20))
+        view.addSubview(livesLabel)
         createGame()
-        
     }
+    func gameOver()
+    {
+        let gameOverAlert = UIAlertController(title: "Try Again", message: "You Failed", preferredStyle: .Alert)
+        self.presentViewController(gameOverAlert, animated: true, completion: nil)
+        let dismiss = UIAlertAction(title: "Better Luck Next Time", style: .Default)
+        { (dismiss) in
+            let homeStart = self.storyboard!.instantiateViewControllerWithIdentifier("HomeStart") as! HomeStart
+            self.presentViewController(homeStart, animated: true, completion: nil)
+        }
+        gameOverAlert.addAction(dismiss)
+    }
+    
     @IBAction func dragPad(sender: UIPanGestureRecognizer)
     {
         let panGesture = sender.locationInView(view).x
@@ -138,7 +150,7 @@ class GalacticBurger: UIViewController, UICollisionBehaviorDelegate
         if item.isEqual(ball) && p.y > paddle.center.y
         {
             print("Lost a life")
-            lives--
+            lives -= 1
             
             if lives > 0
             {
@@ -149,21 +161,20 @@ class GalacticBurger: UIViewController, UICollisionBehaviorDelegate
             else
             {
                 livesLabel.text = "Game Over"
+                gameOver()
                 clearGame()
                 startButton.hidden = false
-                
             }
         }
-        
-        
     }
+    
     func collisionBehavior(behavior: UICollisionBehavior, beganContactForItem item1: UIDynamicItem, withItem item2: UIDynamicItem, atPoint p: CGPoint)
     {
         for brick in brickArray
         {
             if item1.isEqual(ball) && item2.isEqual(brick) || item1.isEqual(brick) && item2.isEqual(ball)
             {
-                print("Hit Brick")
+//                print("Hit Brick")
 //                if brick.image == UIImage(named: "pickles")
                     if brick.backgroundColor == UIColor.greenColor()
                 {

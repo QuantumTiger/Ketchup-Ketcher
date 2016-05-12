@@ -219,7 +219,6 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate, UIWebViewDe
         for rightObstacle in 1...NumberOfRightBarriers
         {
             newWallRight = UIImageView(frame: CGRect(x: rightX, y: rightDistanceBetween, width: -Int(arc4random_uniform(100) + 35), height: 30))
-//            newObstacleRight.transform = CGAffineTransformMakeScale(-1, 1)
             newWallRight.image = UIImage(named: "UFO")
             newWallRight.clipsToBounds = true
             view.addSubview(newWallRight)
@@ -233,14 +232,19 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate, UIWebViewDe
     {
         let gameOverAlert = UIAlertController(title: "Try Again", message: "You Failed", preferredStyle: .Alert)
         self.presentViewController(gameOverAlert, animated: true, completion: nil)
-        let dismiss = UIAlertAction(title: "Better Luck Next Time", style: UIAlertActionStyle.Cancel, handler: nil)
+        let dismiss = UIAlertAction(title: "Better Luck Next Time", style: .Default)
+        { (dismiss) in
+            let homeStart = self.storyboard!.instantiateViewControllerWithIdentifier("HomeStart") as! HomeStart
+            self.presentViewController(homeStart, animated: true, completion: nil)
+        }
         gameOverAlert.addAction(dismiss)
+        
         livesLabel.removeFromSuperview()
         burger.removeFromSuperview()
+        burgerLivesView.removeFromSuperview()
         collisionBehavior.removeItem(burger)
         ketchup.removeFromSuperview()
         everythingStore.removeAll()
-        dismissViewControllerAnimated(true, completion: nil)
         for leftwall in leftWallBarrierStore
         {
             leftwall.hidden = true
@@ -262,10 +266,10 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate, UIWebViewDe
             obstacle.hidden = true
             myDynamicAnimator.updateItemUsingCurrentState(newObstacle)
         }
-        
         timer?.invalidate()
         wallExpired = 0
         perfectRuns = 0
+        
     }
 
     func winner()
@@ -283,7 +287,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate, UIWebViewDe
     
     func lives()
     {
-        var imageSpace = view.center.x - 175
+        let imageSpace = view.center.x - 175
         burgerLivesView = UIImageView(frame: CGRect(x: imageSpace, y: view.center.y * 0.10, width: 35, height: 25))
         burgerLivesView.image = UIImage(named: "Burger")
         view.addSubview(burgerLivesView)
