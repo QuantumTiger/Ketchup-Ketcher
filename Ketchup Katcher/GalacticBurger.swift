@@ -47,7 +47,7 @@ class GalacticBurger: UIViewController, UICollisionBehaviorDelegate
         
         // Add Paddle
         paddle = UIImageView(frame: CGRectMake(view.center.x - 40, view.center.y * 1.75, 100, 50))
-        paddle.image = UIImage(named: "Rounded")
+        paddle.image = UIImage(named: "Burger")
         paddle.layer.cornerRadius = 5
         paddle.clipsToBounds = true
         view.addSubview(paddle)
@@ -167,9 +167,9 @@ class GalacticBurger: UIViewController, UICollisionBehaviorDelegate
             if item1.isEqual(ball) && item2.isEqual(brick) || item1.isEqual(brick) && item2.isEqual(ball)
             {
                 print("Hit Brick")
-                if brick.image == UIImage(named: "pickles")
+                if brick.image == UIImage(named: "UFO")
                 {
-                    brick.image = UIImage(named: "UFO")
+                    brick.image = UIImage(named: "pickles")
                 }
                else if brick.image == UIImage(named: "lettuce")
                 {
