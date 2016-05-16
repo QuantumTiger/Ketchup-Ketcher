@@ -16,6 +16,7 @@ class GalacticBurger: UIViewController, UICollisionBehaviorDelegate
     var collisionBehavior = UICollisionBehavior()
     var imageNames = ["lettuce", "tomato", "pickles"]
     var brickArray : [UIImageView] = []
+    var brickCount = 0
     
     var livesLabel = UILabel()
     
@@ -214,5 +215,6 @@ class GalacticBurger: UIViewController, UICollisionBehaviorDelegate
         collisionBehavior.removeItem(paddle)
         myDynamicAnimator.updateItemUsingCurrentState(ball)
         myDynamicAnimator.updateItemUsingCurrentState(paddle)
+        brickCount = 0
     }
 }
