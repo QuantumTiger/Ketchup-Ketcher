@@ -79,7 +79,7 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="280.5" y="-211.5"/>
+            <point key="canvasLocation" x="267" y="-211"/>
         </scene>
         <!--Galactic Burger-->
         <scene sceneID="YLy-d0-5tj">
@@ -147,7 +147,7 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-780.5" y="-217.5"/>
+            <point key="canvasLocation" x="-715" y="-211"/>
         </scene>
         <!--Home Start-->
         <scene sceneID="jQN-FJ-mtX">
@@ -212,7 +212,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yVU-Z1-IU7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-219.5" y="-217.5"/>
+            <point key="canvasLocation" x="-220" y="-211"/>
         </scene>
         <!--Display Game Modes-->
         <scene sceneID="6MX-Ep-dKY">
@@ -280,7 +280,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O3k-Ux-8KZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-220" y="614"/>
+            <point key="canvasLocation" x="-220" y="465"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
